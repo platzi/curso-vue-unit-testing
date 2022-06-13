@@ -9,5 +9,9 @@ describe('HelloWorld.vue', () => {
     const component = wrapper.find('.hello')
 
     expect(component.classes()).toContain('hello')
+    expect(wrapper.vm.counter).toBe(0)
+
+    wrapper.vm.increment()
+    expect(wrapper.vm.counter).toBe(1)
   })
 })

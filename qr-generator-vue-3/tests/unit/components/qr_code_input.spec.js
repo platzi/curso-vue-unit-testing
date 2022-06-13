@@ -32,5 +32,14 @@ describe('QRCodeInput.vue', () => {
 
       expect(component.text()).toBe('Generar QR')
     })
+    it('renders txt input, change its value and see if stored', () => {
+      const component = wrapper.find('#txt-qr-code')
+
+      expect(component.element.value).toBe('')
+
+      component.setValue('www.platzi.com')
+
+      expect(wrapper.vm.qrCodeInput).toBe('www.platzi.com')
+    })
   })
 })
