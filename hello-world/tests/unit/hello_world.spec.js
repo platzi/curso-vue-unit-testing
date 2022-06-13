@@ -23,4 +23,29 @@ describe('HelloWorld.vue', () => {
     expect(wrapper.find('#header-counter').text()).toBe('counter: 1')
     expect(wrapper.vm.counter).toBe(1)
   })
+  it('button click should call increment and counter data increments', async () => {
+    const spyIncrement = jest.spyOn(HelloWorld.methods, 'increment')
+
+    const wrapper = shallowMount(HelloWorld)
+
+    const component = wrapper.find('#but-increment')
+    await component.trigger('click')
+
+    expect(spyIncrement).toHaveBeenCalledTimes(1)
+    expect(wrapper.vm.counter).toBe(1)
+  })
+  it('button click should call increment function using mock', async () => {
+    const mockedIncrement = jest.fn()
+
+    const wrapper = shallowMount(HelloWorld)
+
+    wrapper.setMethods({ increment: mockedIncrement })
+
+    const component = wrapper.find('#but-increment')
+    await component.trigger('click')
+
+    expect(mockedIncrement).toHaveBeenCalledTimes(1)
+
+    expect(wrapper.vm.counter).toBe(0)
+  })
 })
