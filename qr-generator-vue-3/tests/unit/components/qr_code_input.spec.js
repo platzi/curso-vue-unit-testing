@@ -63,6 +63,12 @@ describe('QRCodeInput.vue', () => {
         expect(wrapper.emitted('qrCodeInput')).toHaveLength(1)
         expect(wrapper.emitted('qrCodeInput')[0]).toStrictEqual([qrCode])
       })
+      it('the button is disabled by default', async () => {
+        const wrapper = shallowMount(QRCodeInput)
+        const btnComponent = wrapper.find('#btn-generate')
+
+        expect(btnComponent.attributes().disabled).toBeDefined()
+      })
     })
   })
 })
